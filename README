@@ -1,0 +1,32 @@
+This is a demo of how to use the cairo-glitz-glz OpenGL accelerated
+renderer with Mapnik.  It also has some rough performance gathering
+functions for comparing cairo-glitz-glx to AGG.
+
+This is not pretty code, it is a quickly assembled hack to test that
+the cairo-glitz-glx renderer even works at all, and to get some basic
+performance data.
+
+To run this code and actually produce an output image requires an
+unreleased version of cairo though, because the latest release
+versions (1.8.8) failed the test suite horribly for the glitz backend.
+So if you try this and get blank images, try upgrading pixman, cairo,
+and cairomm.  The versions I used were all from the latest in the
+respective git repos around end of May 2009 / early June 2009:
+  pixman-0.15.11+ (git://anongit.freedesktop.org/git/pixman)
+  cairo-1.9.1+    (git://git.cairographics.org/git/cairo)
+  cairomm-1.0.8+  (git://git.cairographics.org/git/cairomm)
+
+I installed each of those packages, and mapnik (from SVN trunk) into a
+new prefix, and ran my tests with that code.
+
+Running on Linux (Ubuntu 9.04), with the NVIDIA 180.44 driver and a
+GeForce 9500 GT rev 161 card (1GB), I was able to produce valid output
+images.  However, the performance on the world borders data set (the
+Hello World example on the Mapnik site), was pretty bad.  The AGG
+renderer out-performed the cairo-glitz-glx renderer.  The glitz
+renderer was about 8 times slower (AMD X2 BE-2400 cpu / 2GB RAM) in my
+very rough benchmark testing.
+
+Feel free to contact me for more info.
+-James
+ <jflemer@alum.rpi.edu>
